@@ -1,0 +1,16 @@
+package com.mall.coupon.groovy.rules;
+
+// 支付优惠
+
+import com.mall.coupon.core.model.Order
+import com.mall.coupon.core.model.Coupon
+import com.mall.coupon.core.model.EnquiryResult
+
+rule "rule-payment"
+when
+    $result: EnquiryResult()
+    $coupon: Coupon(couponType == "2")
+then
+    System.out.println("命中了rule payment");
+   $result.setPayDiscount(200);
+end
